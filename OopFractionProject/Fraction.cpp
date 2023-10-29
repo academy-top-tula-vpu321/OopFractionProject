@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Fraction.h"
 
 Fraction::Fraction(int numerator, int denominator)
@@ -71,6 +70,17 @@ void Fraction::Print() const
     std::cout << "[" << numerator << "/" << denominator << "]";
 }
 
+std::ostream& operator<<(std::ostream& out, const Fraction& f)
+{
+    out << "[" << f.numerator << "/" << f.denominator << "]";
+    return out;
+}
+
+std::string Fraction::ToString()
+{
+    return "[" + std::to_string(numerator) + "/" + std::to_string(denominator) + "]";
+}
+
 Fraction Fraction::operator-()
 {
     return Fraction(-numerator, denominator);
@@ -99,4 +109,14 @@ Fraction operator*(const Fraction& f1, const Fraction& f2)
         f1.denominator * f2.denominator);
 }
 
+bool operator<(const Fraction& f1, const Fraction& f2)
+{
+    return f1.numerator * f2.denominator < f1.denominator * f2.numerator;
+}
+
+bool operator>=(const Fraction& f1, const Fraction& f2)
+{
+    //return !(f1 < f2);
+    return f1.numerator * f2.denominator >= f1.denominator * f2.numerator;
+}
 
