@@ -8,10 +8,20 @@ T Sum(T a, T b)
 }
 
 
+
 int main()
 {
-    Fraction f1(5, 7);
+    Fraction f1(2, 3);
     Fraction f2(2, 5);
+
+    std::cout << f1 << " ";
+    std::cout << f1++ << " ";
+    std::cout << f1 << "\n";
+
+    Money m;
+    m = (Money)f1;
+    std::cout << m << "\n";
+    std::cout << sin(f1) << "\n";
 
     //f1.SetNumerator(5);
     //f1.SetDenominator(7);
@@ -41,6 +51,12 @@ int main()
     Fraction f3 = Sum(f1, f2);
     f3.Print();*/
 
-    std::cout << "My fraction: " << f1 << " !!!\n";
+    //std::cout << "My fraction: " << f1 << " !!!\n";
+
+    /*int n{ 10 };
+
+    std::cout << n++ << "\n";
+    std::cout << n << "\n";*/
+    
 }
 

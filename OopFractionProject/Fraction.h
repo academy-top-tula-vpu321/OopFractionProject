@@ -1,6 +1,25 @@
 #pragma once
 #include <iostream>
+#include <iostream>
 #include <string>
+
+class Money
+{
+	int rub;
+	int kop;
+public:
+	Money() : rub{}, kop{} {}
+	Money(int rub, int kop) :rub{ rub }, kop{ kop } {}
+
+	int& Rub() { return rub; }
+	int& Kop() { return kop; }
+
+	friend std::ostream& operator<<(std::ostream& out, const Money m)
+	{
+		out << m.rub << " rub, " << m.kop << " kop.";
+		return out;
+	}
+};
 
 class Fraction
 {
@@ -30,6 +49,15 @@ public:
 
 	Fraction operator-();
 
+	operator Money()
+	{
+		return Money(numerator / denominator, (numerator % denominator / (float)denominator) * 100);
+	}
+
+	operator double()
+	{
+		return (double)numerator / denominator;
+	}
 	
 	//Fraction operator+(int number) const;
 
@@ -46,6 +74,9 @@ public:
 
 	friend bool operator<(const Fraction& f1, const Fraction& f2);
 	friend bool operator>=(const Fraction& f1, const Fraction& f2);
+
+	Fraction operator++();
+	Fraction operator++(int);
 };
 
 
